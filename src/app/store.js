@@ -1,16 +1,12 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import counterReducer from '../features/counter/counterSlice';
+import { createStore, combineReducers } from 'redux';
+import { allMoviesReducer } from '../features/allMovies/allMoviesSlice';
+import { favoriteMoviesReducer } from '../features/favoriteMovies/favoriteMoviesSlice';
+import { searchTermReducer } from '../features/searchTerm/searchTermSlice';
 
-// export const store = configureStore({
-//   reducer: {
-//     counter: counterReducer,
-//   },
-// });
+const reducers = {
+  allMovies: allMoviesReducer,
+  favoriteMovies: favoriteMoviesReducer,
+  searchTerm: searchTermReducer
+}
 
-export const store = {}
-
-const initialState = {};
-
-initialState.allMovies = [];
-initialState.favoriteMovies = [];
-initialState.searchTerm = '';
+export const store = createStore(combineReducers(reducers));
