@@ -28,3 +28,5 @@ export const searchTermReducer = (searchTerm = initialSearchTerm, action) => {
         return searchTerm;
   }
 };
+
+export const selectSearchTerm = (state) => state.searchTerm;

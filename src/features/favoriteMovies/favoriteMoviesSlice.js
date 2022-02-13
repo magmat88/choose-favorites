@@ -2,6 +2,7 @@ import {
   FAVORITE_MOVIES__DISLIKE_MOVIE,
   FAVORITE_MOVIES__LIKE_MOVIE,
 } from '../../app/constants/actionTypes';
+import { selectSearchTerm } from '../searchTerm/searchTermSlice';
 
 export const likeMovie = (movie) => {
   return {
@@ -33,4 +34,15 @@ export const favoriteMoviesReducer = (
     default:
       return favoriteMovies;
   }
+};
+
+export const selectFavoriteMovies = (state) => state.favoriteMovies;
+
+export const selectFilteredFavoriteMovies = (state) => {
+  const favoriteMovies = selectFavoriteMovies(state);
+  const searchTerm = selectSearchTerm(state);
+
+  return favoriteMovies.filter((movie) =>
+    movie.genre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 };

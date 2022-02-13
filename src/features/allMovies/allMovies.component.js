@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { LikeBtn } from '../../components/likeBtn/likeBtn.component';
 import { Movie } from '../../components/movie/movie.component';
 import { likeMovie } from '../favoriteMovies/favoriteMoviesSlice';
-import { loadData } from './allMoviesSlice';
+import { loadData, selectFilteredAllMovies } from './allMoviesSlice';
 import { ReactComponent as LikeIcon } from '../../img/like.svg';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const AllMovies = (props) => {
-  const { allMovies, dispatch } = props;
+  const allMovies = useSelector(selectFilteredAllMovies);
+  const dispatch = useDispatch();
 
   const onFirstRender = () => {
     dispatch(loadData());

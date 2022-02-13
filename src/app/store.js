@@ -6,7 +6,7 @@ import { searchTermReducer } from '../features/searchTerm/searchTermSlice';
 const reducers = {
   allMovies: allMoviesReducer,
   favoriteMovies: favoriteMoviesReducer,
-  searchTerm: searchTermReducer
-}
+  searchTerm: searchTermReducer,
+};
 
 export const store = createStore(combineReducers(reducers));

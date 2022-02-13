@@ -2,6 +2,7 @@ import { allMoviesData } from '../../data';
 import { ALL_MOVIES__LOAD_DATA } from '../../app/constants/actionTypes';
 import { FAVORITE_MOVIES__LIKE_MOVIE } from '../../app/constants/actionTypes';
 import { FAVORITE_MOVIES__DISLIKE_MOVIE } from '../../app/constants/actionTypes';
+import { selectSearchTerm } from '../searchTerm/searchTermSlice';
 
 export const loadData = () => {
   return {
@@ -22,4 +23,15 @@ export const allMoviesReducer = (allMovies = initialAllMovies, action) => {
     default:
       return allMovies;
   }
+};
+
+export const selectAllMovies = (state) => state.allMovies;
+
+export const selectFilteredAllMovies = (state) => {
+  const allMovies = selectAllMovies(state);
+  const searchTerm = selectSearchTerm(state);
+
+  return allMovies.filter((movie) =>
+    movie.genre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 };

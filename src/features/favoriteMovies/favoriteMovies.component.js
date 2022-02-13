@@ -2,13 +2,16 @@ import React from 'react';
 import { ReactComponent as DislikeIcon } from '../../img/dislike.svg';
 import { LikeBtn } from '../../components/likeBtn/likeBtn.component';
 import { Movie } from '../../components/movie/movie.component';
-import { dislikeMovie } from '../favoriteMovies/favoriteMoviesSlice';
+import { dislikeMovie, selectFilteredFavoriteMovies } from '../favoriteMovies/favoriteMoviesSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
-export const FavoriteMovies = (props) => {
-    const { favoriteMovies, dispatch } = props;
+export const FavoriteMovies = () => {
+    const favoriteMovies = useSelector(selectFilteredFavoriteMovies);
+    const dispatch = useDispatch();
+
 
     const onDislikeMovieHandler = (movie) => {
-        dispatch(dislikeMovie(movie))
+        dispatch(dislikeMovie(movie));
     }
 
     // const dislikeIcon = <DislikeIcon />;
